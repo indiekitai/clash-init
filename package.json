@@ -1,0 +1,40 @@
+{
+  "name": "@indiekitai/clash-init",
+  "version": "1.0.0",
+  "description": "Clash/mihomo configuration generator CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "clash-init": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test test/*.test.js",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "clash",
+    "mihomo",
+    "proxy",
+    "config",
+    "shadowsocks",
+    "vmess",
+    "vless",
+    "trojan",
+    "hysteria2"
+  ],
+  "author": "IndieKit AI <hi@indiekit.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/indiekitai/clash-init.git"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.2",
+    "typescript": "^5.4.0"
+  }
+}
