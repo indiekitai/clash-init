@@ -2,30 +2,30 @@
 
 # @indiekitai/clash-init
 
-Clash/mihomo configuration generator CLI. Zero external dependencies.
+Clash/mihomo 配置生成器 CLI。零外部依赖。
 
-## Features
+## 特性
 
-- 🔧 Generate Clash/mihomo config from CLI args or interactively
-- 📡 Protocols: Shadowsocks, VMess, VLESS, Trojan, Hysteria2
-- 📋 Built-in rule templates: global proxy, China direct, custom
-- 🔍 TCP connectivity test for proxy servers
-- 🔗 Export share URIs (ss://, vmess://, trojan://, etc.)
-- 🌐 WARP exit IP detection
-- 🤖 MCP Server for AI agent integration
+- 🔧 通过 CLI 参数或交互式方式生成 Clash/mihomo 配置
+- 📡 支持协议：Shadowsocks、VMess、VLESS、Trojan、Hysteria2
+- 📋 内置规则模板：全局代理、国内直连、自定义
+- 🔍 TCP 连通性测试
+- 🔗 导出分享 URI（ss://、vmess://、trojan:// 等）
+- 🌐 WARP 出口 IP 检测
+- 🤖 MCP Server，用于 AI agent 集成
 
-## Install
+## 安装
 
 ```bash
 npm i -g @indiekitai/clash-init
-# or use directly
+# 或直接使用
 npx @indiekitai/clash-init
 ```
 
-## CLI Usage
+## CLI 用法
 
 ```bash
-# Interactive mode
+# 交互模式
 npx @indiekitai/clash-init
 
 # Shadowsocks
@@ -44,38 +44,38 @@ npx @indiekitai/clash-init --trojan --server 1.2.3.4 --port 443 --password "xxx"
 # Hysteria2
 npx @indiekitai/clash-init --hysteria2 --server 1.2.3.4 --port 443 --password "xxx"
 
-# China direct template
+# 国内直连模板
 npx @indiekitai/clash-init --ss --server 1.2.3.4 --port 443 \
   --password "xxx" --template china
 
-# JSON output
+# JSON 输出
 npx @indiekitai/clash-init --ss --server 1.2.3.4 --port 443 \
   --password "xxx" --json
 
-# Share URI only
+# 仅输出分享 URI
 npx @indiekitai/clash-init --ss --server 1.2.3.4 --port 443 \
   --password "xxx" --uri
 
-# Test connectivity
+# 测试连通性
 npx @indiekitai/clash-init --test --ss --server 1.2.3.4 --port 443 --password "xxx"
 
-# Check WARP exit IP
+# 检查 WARP 出口 IP
 npx @indiekitai/clash-init --check-warp
 
-# Write to file
+# 写入文件
 npx @indiekitai/clash-init --ss --server 1.2.3.4 --port 443 \
   --password "xxx" -o config.yaml
 ```
 
-## Templates
+## 模板
 
-| Template | Description |
-|----------|-------------|
-| `global` | Route everything through proxy (default) |
-| `china`  | China domains/IPs direct, rest through proxy |
-| `custom` | Minimal rules, only private IPs direct |
+| 模板 | 说明 |
+|------|------|
+| `global` | 所有流量走代理（默认） |
+| `china` | 国内域名/IP 直连，其余走代理 |
+| `custom` | 最简规则，仅私有 IP 直连 |
 
-## Programmatic API
+## 编程式 API
 
 ```js
 import { generateConfig, configToYaml, proxyToUri, testConnection, checkWarp } from '@indiekitai/clash-init';
@@ -89,27 +89,27 @@ const proxy = {
   password: 'secret',
 };
 
-// Generate config object
+// 生成配置对象
 const config = generateConfig({ proxy, template: 'china' });
 
-// Convert to YAML
+// 转换为 YAML
 console.log(configToYaml(config));
 
-// Get share URI
+// 获取分享 URI
 console.log(proxyToUri(proxy));
 
-// Test connectivity
+// 测试连通性
 const result = await testConnection('1.2.3.4', 443);
 console.log(result); // { server, port, reachable, latencyMs }
 
-// Check WARP
+// 检查 WARP
 const warp = await checkWarp();
 console.log(warp); // { ip, isWarp, org }
 ```
 
 ## MCP Server
 
-For AI agent integration via [Model Context Protocol](https://modelcontextprotocol.io):
+通过 [Model Context Protocol](https://modelcontextprotocol.io) 集成 AI agent：
 
 ```json
 {
@@ -122,19 +122,19 @@ For AI agent integration via [Model Context Protocol](https://modelcontextprotoc
 }
 ```
 
-Or run the MCP server directly:
+或直接运行 MCP server：
 
 ```bash
 node dist/mcp.js
 ```
 
-### MCP Tools
+### MCP 工具
 
-| Tool | Description |
-|------|-------------|
-| `generate_config` | Generate Clash config (yaml/json/uri output) |
-| `test_proxy` | Test TCP connectivity to a proxy server |
-| `check_ip` | Check current exit IP and WARP status |
+| 工具 | 说明 |
+|------|------|
+| `generate_config` | 生成 Clash 配置（yaml/json/uri 输出） |
+| `test_proxy` | 测试代理服务器的 TCP 连通性 |
+| `check_ip` | 检查当前出口 IP 和 WARP 状态 |
 
 ## License
 
